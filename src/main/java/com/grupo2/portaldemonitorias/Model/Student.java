@@ -3,8 +3,6 @@ package com.grupo2.portaldemonitorias.Model;
 import lombok.Getter;
 import lombok.Setter;
 
-import com.grupo2.portaldemonitorias.Enum.Gender;
-
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
@@ -32,10 +30,6 @@ public class Student {
     @Type(type = "org.hibernate.type.TextType")
     @Column(name = "student_name")
     private String studentName;
-
-    @Enumerated(EnumType.STRING)
-    @Column(name = "gender")
-    private Gender gender;
 
     @Lob
     @Type(type = "org.hibernate.type.TextType")
