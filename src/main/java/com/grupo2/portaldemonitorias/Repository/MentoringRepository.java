@@ -10,7 +10,9 @@ import java.util.List;
 
 @Repository
 public interface MentoringRepository extends JpaRepository<Mentoring, Long> {
-    Mentoring findByidStudent(Long id);
+    Mentoring findByidMentoring(Long id);
 
     Mentoring findByDiscipline(String discipline);
+
+    Mentoring findByDescription(String description);
 }

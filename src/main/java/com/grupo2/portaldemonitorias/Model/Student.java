@@ -6,8 +6,11 @@ import lombok.Setter;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
-
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.grupo2.portaldemonitorias.Enum.StudentStatus;
+
 import java.util.List;
 
 @Getter
@@ -31,11 +34,20 @@ public class Student {
     @Column(name = "student_name")
     private String studentName;
 
-    @Lob
-    @Type(type = "org.hibernate.type.TextType")
-    @Column(name = "disciline_name")
-    private String discipline;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status")
+    private StudentStatus status;
 
+    /**
+     * Table Relations
+     */
+    @JsonProperty("mentorings")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "student", cascade = CascadeType.REMOVE)
+    private List<Mentoring> mentorings;
+
+    /**
+     * Methods
+     */
     public Student() {}
 
     public Long getId() {
