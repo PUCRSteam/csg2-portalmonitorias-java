@@ -1,3 +1,5 @@
+//Updated Professor Model
+
 package com.grupo2.portaldemonitorias.Model;
 
 import lombok.Getter;
