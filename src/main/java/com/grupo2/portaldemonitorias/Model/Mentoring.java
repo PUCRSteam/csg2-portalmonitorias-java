@@ -16,36 +16,28 @@ import java.util.List;
 @Setter
 @Entity
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-@Table(name = "students", schema = "personas")
+@Table(name = "mentorings", schema = "personas")
 
-public class Student {
+public class Mentoring {
 
-    /**
-     * O id do estudante é equivalente a sua matricula;
-     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_student")
-    private Long idStudent;
-
-    @Lob
-    @Type(type = "org.hibernate.type.TextType")
-    @Column(name = "student_name")
-    private String studentName;
-
-    @Enumerated(EnumType.STRING)
-    @Column(name = "gender")
-    private Gender gender;
+    @Column(name = "id_mentoring")
+    private Long idMentoring;
 
     @Lob
     @Type(type = "org.hibernate.type.TextType")
     @Column(name = "disciline_name")
     private String discipline;
 
-    public Student() {}
+    public Mentoring() {}
 
     public Long getId() {
-        return getIdStudent();
+        return getIdMentoring();
+    }
+
+    public String getDiscipline() {
+        return getDiscipline();
     }
 
 }
