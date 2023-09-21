@@ -8,3 +8,9 @@
 <li>Divulgação dos resultados por fora da plataforma, via e-mail.</li>
 <br>
 Este serviço está diretamente relacionado ao engajamento acadêmico e à colaboração entre professores e alunos, fazendo parte do núcleo do negócio.
+<br>
+<br>
+
+# How to run:
+- git clone https://github.com/PUCRSteam/csg2-portalmonitorias-java.git
+- mvn spring-boot:run
