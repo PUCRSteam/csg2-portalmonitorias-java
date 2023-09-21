@@ -10,5 +10,5 @@ import java.util.List;
 
 @Repository
 public interface ProfessorRepository extends JpaRepository<Professor, Long> {
-    Professor findByidStudent(Long id);
+    Professor findByidProfessor(Long id);
 }
