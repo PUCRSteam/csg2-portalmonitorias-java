@@ -20,9 +20,6 @@ public class ProfessorDTO {
         return getIdProfessor();
     }
 
-
-/* 
-== Retirar este bloco se não for necessário ==
     public ProfessorDTO(Long idProfessor, String professorName){
         this.idProfessor = idProfessor;
         this.professorName = professorName;
@@ -36,8 +33,11 @@ public class ProfessorDTO {
     public String getProfessorName(){
         return professorName;
     }
+    
     public void setProfessorName(String professorName){
         this.professorName = professorName;
     }
-*/
+
+
 }
+

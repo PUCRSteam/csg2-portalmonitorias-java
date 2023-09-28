@@ -21,9 +21,6 @@ public class StudentDTO {
     public Long getId(){
         return getIdStudent();
     }
-
-   /* 
-   == Retirar este bloco se não for necessário == 
     public StudentDTO(Long idStudent, String StudentName, String course){
         this.idStudent = idStudent;
         this.StudentName = StudentName;
@@ -44,8 +41,10 @@ public class StudentDTO {
     public String getCourse(){
         return course;
     }
-    public void setCourse(String course){
+   public void setCourse(String course){
         this.course = course;
     }
-*/
+
+
 }
+
