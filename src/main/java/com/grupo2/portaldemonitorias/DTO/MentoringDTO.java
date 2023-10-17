@@ -34,3 +34,5 @@ public class MentoringDTO {
     public void setCourse(String course){
         this.course = course;
     }
+
+}
