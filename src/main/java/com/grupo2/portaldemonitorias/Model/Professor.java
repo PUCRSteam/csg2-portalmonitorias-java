@@ -1,14 +1,14 @@
+//Updated Professor Model
+
 package com.grupo2.portaldemonitorias.Model;
 
 import lombok.Getter;
 import lombok.Setter;
 
-import com.grupo2.portaldemonitorias.Enum.Gender;
-
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
-
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.util.List;
 
@@ -29,10 +29,16 @@ public class Professor {
     @Column(name = "professor_name")
     private String professorName;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "gender")
-    private Gender gender;
+     /**
+     * Table Relations
+     */
+    @JsonProperty("mentorings")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "professor", cascade = CascadeType.REMOVE)
+    private List<Mentoring> mentorings;
 
+    /**
+     * Methods
+     */
     public Professor() {}
 
     public Long getId() {

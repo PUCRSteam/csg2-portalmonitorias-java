@@ -19,14 +19,6 @@ public class MentoringDTO {
     public Long getId(){
         return getIdMentoring();
     }
-
-/* 
-  == Retirar este bloco se não for necessário ==
-    public MentoringDTO(Long idMentoring, String course){
-        this.idMentoring = idMentoring;
-        this.course = course;
-    }
-
     public Long getIdMentoring(){
         return idMentoring;
     }
@@ -42,5 +34,3 @@ public class MentoringDTO {
     public void setCourse(String course){
         this.course = course;
     }
-*/
-}

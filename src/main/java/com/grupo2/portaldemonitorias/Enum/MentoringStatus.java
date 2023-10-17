@@ -7,24 +7,25 @@ import com.fasterxml.jackson.annotation.JsonView;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Gender {
+public enum MentoringStatus {
 
-    M("M","Male"),
-    F("F","Female"),
-    O("O", "Others");
+    AC("AC","Aceitando Inscricoes"),
+    AV("AV","Avaliando Inscricoes"),
+    M("M", "Monitorando"),
+    F("F", "Fechada");
 
     private final String chave;
     private final String descricao;
 
-    private static final Map<String, Gender> byDescription = new HashMap<>();
+    private static final Map<String, MentoringStatus> byDescription = new HashMap<>();
 
     static{
-        for(Gender g : values()){
-            byGender.put(g.chave, g);
+        for(MentoringStatus s : values()){
+            byDescription.put(s.chave, s);
         }
     }
 
-    Gender(String chave, String descricao) {
+    MentoringStatus(String chave, String descricao) {
         this.chave = chave;
         this.descricao = descricao;
     }
@@ -40,17 +41,18 @@ public class Gender {
     @JsonValue
     public String getValor() {
         switch (this) {
+            case AC:
+            case AV:
             case M:
             case F:
-            case O:
                 return valueOfDescription(getChave()).getDescricao();
         }
         return "Valor Inválido";
     }
 
     @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
-    public static Gender valueOfDescription(String key){
-        return byGender.get(key);
+    public static MentoringStatus valueOfDescription(String key){
+        return byDescription.get(key);
     }
-
 }
+
