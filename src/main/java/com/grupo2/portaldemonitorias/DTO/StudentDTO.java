@@ -26,9 +26,9 @@ public class StudentDTO {
         this.StudentName = StudentName;
         this.course = course;
     }
-    public Long getId(){
-        return idStudent;
-    }
+    // public Long getId(){
+    //     return idStudent;
+    // }
     public void setId(Long idStudent){
         this.idStudent = idStudent;
     }
