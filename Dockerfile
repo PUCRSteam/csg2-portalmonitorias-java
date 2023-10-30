@@ -19,4 +19,6 @@ RUN mvn clean package
 # Comando a ser executado quando o contêiner for iniciado
 CMD [ "java", "-jar", "target/portal-de-monitorias-0.0.1-SNAPSHOT.jar" ]
 
+# Comentário para testar que o Actions está disparando.
+
 
