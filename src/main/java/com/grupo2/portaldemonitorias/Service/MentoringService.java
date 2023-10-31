@@ -1,5 +1,4 @@
 package com.grupo2.portaldemonitorias.Service;
-import org.springframework.data.jpa.Service.JpaService;
 import org.springframework.stereotype.Service;
 
 import org.springframework.beans.factory.annotation.Autowired;

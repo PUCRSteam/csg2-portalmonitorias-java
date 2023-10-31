@@ -1,6 +1,5 @@
 package com.grupo2.portaldemonitorias.Service;
 
-import org.springframework.data.jpa.Service.JpaService;
 import org.springframework.stereotype.Service;
 
 import com.grupo2.portaldemonitorias.DTO.StudentDTO;
