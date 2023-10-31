@@ -37,7 +37,7 @@ public class ProfessorController {
     private EntityManager entityManager;
 
     @Autowired
-    public ProfessortController(
+    public ProfessorController(
             ProfessorRepository professorRepository,
             ProfessorService professorService
     ){ 
