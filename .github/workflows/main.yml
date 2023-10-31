@@ -1,7 +1,11 @@
 name: GitHub Actions Demo
 run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 
-on: [push]
+on:
+  push:
+    branches: [ main ]
+
+  workflow_dispatch:
 
 env:
   applicationfolder: spring-boot-hello-world-example
@@ -9,6 +13,12 @@ env:
   S3BUCKET: bucket-767x60opu87j
 
 jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Code checkout
+      - uses: actions/checkout@v3
+  
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
     steps:
