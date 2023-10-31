@@ -6,6 +6,8 @@ import com.grupo2.portaldemonitorias.Model.Mentoring;
 import com.grupo2.portaldemonitorias.Repository.MentoringRepository;
 import com.grupo2.portaldemonitorias.Repository.ProfessorRepository;
 import com.grupo2.portaldemonitorias.Repository.StudentRepository;
+import com.grupo2.portaldemonitorias.Service.ProfessorService;
+import com.grupo2.portaldemonitorias.Service.StudentService;
 
 @Service
 public class MentoringService {
