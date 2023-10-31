@@ -8,6 +8,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Entity;
 
 import com.grupo2.portaldemonitorias.Enum.StudentStatus;
 

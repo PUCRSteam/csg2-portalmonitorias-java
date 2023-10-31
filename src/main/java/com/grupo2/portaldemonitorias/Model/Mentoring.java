@@ -13,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.Table;
 import java.util.List;
+import javax.persistence.Entity;
 
 @Getter
 @Setter
