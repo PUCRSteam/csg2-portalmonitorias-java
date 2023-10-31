@@ -25,6 +25,12 @@ jobs:
           java-version: 17
       - name: Project build
         run: mvn clean install -Dskiptests
+      - name: Dockerhub Login
+        run: docker login -u ${{secrets.DOCKER_USERNAME}} -p ${{secrets.DOCKER_PASSWORD}}
+      - name: Docker image build
+        run: docker build -t .
+      - name: Docker image push
+        run: docker push .
 
   ##Explore-GitHub-Actions:
     ##runs-on: ubuntu-latest

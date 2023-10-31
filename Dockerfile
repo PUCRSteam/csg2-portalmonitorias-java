@@ -7,6 +7,8 @@ WORKDIR /app
 # Copie o código-fonte da aplicação para o contêiner
 COPY . .
 
+EXPOSE 8080
+
 # Copia o arquivo JAR do aplicativo para o contêiner
 #COPY target/portal-de-monitorias-0.0.1-SNAPSHOT.jar aplicativo.jar
 
