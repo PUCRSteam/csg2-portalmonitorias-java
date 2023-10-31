@@ -1,6 +1,13 @@
 name: GitHub Actions Demo
 run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+
 on: [push]
+
+env:
+  applicationfolder: spring-boot-hello-world-example
+  AWS_REGION: us-east-1
+  S3BUCKET: bucket-767x60opu87j
+
 jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
