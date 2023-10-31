@@ -49,7 +49,9 @@ public class ProfessorController {
     public ResponseEntity<List<ProfessorDTO>> readAllProfessors(
             @RequestParam(value = "professorName", required = false) String professorName
     ){
-
+        ;
+    }
+    
     @GetMapping(value = URL_SINGULAR, produces = MediaType.APPLICATION_JSON_VALUE)
     @ApiModelProperty("Busca de um professor pelo seu ID")
     public ResponseEntity<ProfessorDTO> readProfessorById(@PathVariable Long id) {
@@ -57,8 +59,7 @@ public class ProfessorController {
         return professor.map(value -> ResponseEntity.ok(ProfessorMapper.MAPPER.ProfessorToProfessorDTO(value))).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    }
-     @PostMapping(value = URL_PLURAL, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = URL_PLURAL, produces = MediaType.APPLICATION_JSON_VALUE)
     @ApiModelProperty("Cria um novo professor")
     @Transactional
     public ResponseEntity<ProfessorDTO> createProfessor(@RequestBody @Valid ProfessorDTO professorDTO, UriComponentsBuilder uriComponentsBuilder) {

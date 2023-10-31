@@ -44,11 +44,14 @@ public class MentoringController {
         this.mentoringRepository = mentoringRepository;
         this.mentoringService = mentoringService;
     }
-     @GetMapping(value = URL_PLURAL, produces = MediaType.APPLICATION_JSON_VALUE)
+    
+    @GetMapping(value = URL_PLURAL, produces = MediaType.APPLICATION_JSON_VALUE)
     @ApiModelProperty("Busca em lista de todos as monitoria cadastradas")
     public ResponseEntity<List<MentoringDTO>> readAllMetoring(
             @RequestParam(value = "course", required = false) String mentoringCourse
     ){
+        ;
+    }
 
     @GetMapping(value = URL_SINGULAR, produces = MediaType.APPLICATION_JSON_VALUE)
     @ApiModelProperty("Busca de uma monitoria pelo seu ID")
@@ -57,8 +60,7 @@ public class MentoringController {
         return mentoring.map(value -> ResponseEntity.ok(Mentoringapper.MAPPER.MentoringToMentoringDTO(value))).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    }
-     @PostMapping(value = URL_PLURAL, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = URL_PLURAL, produces = MediaType.APPLICATION_JSON_VALUE)
     @ApiModelProperty("Cria uma nova monitoria")
     @Transactional
     public ResponseEntity<MentoringDTO> createMentoring(@RequestBody @Valid MentoringDTO mentoringDTO, UriComponentsBuilder uriComponentsBuilder) {

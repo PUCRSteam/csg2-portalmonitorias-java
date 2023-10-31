@@ -52,6 +52,8 @@ public class StudentController {
             @RequestParam(value = "course", required = false) String course,
             @RequestParam(value = "studentName", required = false) String studentName
     ){
+        ;
+    }
 
     @GetMapping(value = URL_SINGULAR, produces = MediaType.APPLICATION_JSON_VALUE)
     @ApiModelProperty("Busca de um estudante pelo seu ID")
@@ -60,8 +62,7 @@ public class StudentController {
         return student.map(value -> ResponseEntity.ok(AthleteMapper.MAPPER.StudentTOStudenteDTO(value))).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    }
-     @PostMapping(value = URL_PLURAL, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = URL_PLURAL, produces = MediaType.APPLICATION_JSON_VALUE)
     @ApiModelProperty("Cria um novo estudante")
     @Transactional
     public ResponseEntity<StudentDTO> createAthlete(@RequestBody @Valid StudentDTO studentDTO, UriComponentsBuilder uriComponentsBuilder) {
