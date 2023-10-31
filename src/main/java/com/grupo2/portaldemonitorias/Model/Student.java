@@ -13,6 +13,15 @@ import javax.persistence.Entity;
 import com.grupo2.portaldemonitorias.Enum.StudentStatus;
 
 import java.util.List;
+import lombok.Getter;
+import lombok.Setter;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.ManyToOne;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Getter
 @Setter
