@@ -18,7 +18,8 @@ jobs:
     steps:
       - name: Code checkout
       - uses: actions/checkout@v4
-  
+      - run: echo "test"
+
   ##Explore-GitHub-Actions:
     ##runs-on: ubuntu-latest
     ##steps:
