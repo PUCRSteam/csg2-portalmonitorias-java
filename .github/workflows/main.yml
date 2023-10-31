@@ -16,21 +16,30 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Code checkout
+      - name: Checkout code
         uses: actions/checkout@v4
       - name: Java setup
         uses: actions/setup-java@v3
         with:
           distribution: "temurin"
           java-version: 17
-      - name: Project build
+      - name: Build project
         run: mvn clean install -Dskiptests
-      - name: Dockerhub Login
+      - name: Log into Dockerhub
         run: docker login -u ${{secrets.DOCKER_USERNAME}} -p ${{secrets.DOCKER_PASSWORD}}
-      - name: Docker image build
+      - name: Build docker image
         run: docker build -t .
-      - name: Docker image push
+      - name: Push image onto Dockerhub
         run: docker push .
+  
+  deploy:
+    needs: build
+    runs-on: self-hosted
+    steps:
+      - name: Pull image from Dockerhub
+        run: docker pull
+      - name: Run Docker container
+        run: docker run -dp 8080:8080 --name trabalho_de_cs .
 
   ##Explore-GitHub-Actions:
     ##runs-on: ubuntu-latest
