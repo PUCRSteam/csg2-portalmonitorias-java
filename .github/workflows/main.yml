@@ -1,57 +1,32 @@
-name: GitHub Actions Demo
-run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
-
-on:
-  push:
-    branches: [ main ]
-
-  #workflow_dispatch:
-
-env:
-  applicationfolder: spring-boot-hello-world-example
-  AWS_REGION: us-east-1
-  S3BUCKET: bucket-767x60opu87j
+name: deploy-aws
+on: [push]
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-      - name: Java setup
-        uses: actions/setup-java@v3
-        with:
-          distribution: "temurin"
-          java-version: 17
-      - name: Build project
-        run: mvn clean install -Dskiptests
-      - name: Log into Dockerhub
-        run: docker login -u ${{secrets.DOCKER_USERNAME}} -p ${{secrets.DOCKER_PASSWORD}}
-      - name: Build docker image
-        run: docker build -t .
-      - name: Push image onto Dockerhub
-        run: docker push .
-  
-  deploy:
-    needs: build
-    runs-on: self-hosted
-    steps:
-      - name: Pull image from Dockerhub
-        run: docker pull adrianaserpa99/csg2-portalmonitorias-img:latest
-      - name: Run Docker container
-        run: docker run -dp 8080:8080 --name trabalho_de_cs ./csg2-portalmonitorias-img
+    deploy:
+        name: Deploy to AWS
+        runs-on: ubuntu-latest
+        steps:
+            - name: Configure AWS credentials
+              uses: aws-actions/configure-aws-credentials@v1
+              with:
+                  aws-access-key-id: ${{ secrets.ACCESS_KEY_ID }}
+                  aws-secret-access-key: ${{ secrets.SECRET_ACCESS_KEY }}
+                  aws-session-token: ${{ secrets.SESSION_TOKEN }}
+                  aws-region: us-east-1
 
-  ##Explore-GitHub-Actions:
-    ##runs-on: ubuntu-latest
-    ##steps:
-      ##- run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
-      ##- run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
-      ##- run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
-      ##- name: Check out repository code
-      ##  uses: actions/checkout@v4
-      ##- run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
-      ##- run: echo "🖥️ The workflow is now ready to test your code on the runner."
-      ##- name: List files in the repository
-      ##  run: |
-      ##    ls ${{ github.workspace }}
-      ##- run: echo "🍏 This job's status is ${{ job.status }}."*/
+            - name: Checkout
+              uses: actions/checkout@v2
+
+            - name: Upload to S3
+              run: |
+                mkdir deployment
+                rsync -Rr . deployment
+                zip -r deployment.zip deployment
+                aws s3 cp deployment.zip s3://${{ secrets.S3_BUCKET }}/
+
+            - name: Create deployment
+              run: |
+                aws deploy create-deployment --application-name APPLICATION_NAME \
+                    --deployment-config-name CodeDeployDefault.OneAtATime \
+                    --deployment-group-name DEPLOYMENT_GROUP \
+                    --s3-location bucket=${{ secrets.S3_BUCKET }},bundleType=zip,key=deployment.zip
