@@ -10,5 +10,3 @@ resource "aws_instance" "example" {
     Name = "terraform-example-instance"
   }
 }
-
-/*continuar no passo 4 do tutorial*/
